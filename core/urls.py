@@ -1,16 +1,16 @@
 from django.urls import path
 from .views import (
+    CategoriaListCreate,
     UnidadeListCreate,
     SalaListCreate,
     StatusListCreate,
     BemListCreate,
-    BemDetail
 )
 
 urlpatterns = [
-    path("unidades/", UnidadeListCreate.as_view(), name="unidades"),
-    path("salas/", SalaListCreate.as_view(), name="salas"),
-    path("status/", StatusListCreate.as_view(), name="status"),
-    path("bens/", BemListCreate.as_view(), name="bens"),
-    path("bens/<int:pk>/", BemDetail.as_view(), name="bem-detail"),
+    path("categorias/", CategoriaListCreate.as_view()),
+    path("unidades/", UnidadeListCreate.as_view()),
+    path("salas/", SalaListCreate.as_view()),
+    path("status/", StatusListCreate.as_view()),
+    path("bens/", BemListCreate.as_view()),
 ]
