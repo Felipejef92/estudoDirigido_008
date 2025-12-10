@@ -26,6 +26,10 @@ class Status(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True)
 
+    class Meta:
+        verbose_name = "Status"
+        verbose_name_plural = "Status"
+
     def __str__(self):
         return self.nome
 
@@ -45,6 +49,10 @@ class Bem(models.Model):
     
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Bem"
+        verbose_name_plural = "Bens"
 
     def __str__(self):
         return f"{self.nome} ({self.tombo})"
