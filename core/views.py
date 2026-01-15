@@ -49,26 +49,35 @@ def api_login(request):
 
 
 @extend_schema(tags=["Categorias"])
-class CategoriaListCreate(generics.ListCreateAPIView):
-    queryset = Categoria.objects.all()
-    serializer_class = CategoriaSerializer
-
-    def get_permissions(self):
-        if self.request.method == "GET":
-            return [AllowAny()]
-        return [IsAuthenticated()]
-
-
-@extend_schema(tags=["Categorias"])
-class CategoriaRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+class CategoriaListCreateView(generics.ListCreateAPIView):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
     permission_classes = [IsAuthenticated]
 
 
+@extend_schema(tags=["Categorias"])
+class CategoriaDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+    
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny()]
+        return [IsAuthenticated()]
+    
 
 @extend_schema(tags=["Unidades"])
-class UnidadeListCreate(generics.ListCreateAPIView):
+class UnidadeListCreateView(generics.ListCreateAPIView):
+    queryset = Unidade.objects.all()
+    serializer_class = UnidadeSerializer
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny()]
+        return [IsAuthenticated()]
+    
+@extend_schema(tags=["Unidades"])
+class UnidadeDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Unidade.objects.all()
     serializer_class = UnidadeSerializer
 
@@ -79,7 +88,17 @@ class UnidadeListCreate(generics.ListCreateAPIView):
 
 
 @extend_schema(tags=["Salas"])
-class SalaListCreate(generics.ListCreateAPIView):
+class SalaListCreateView(generics.ListCreateAPIView):
+    queryset = Sala.objects.all()
+    serializer_class = SalaSerializer
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny()]
+        return [IsAuthenticated()]
+
+@extend_schema(tags=["Salas"])
+class SalaDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Sala.objects.all()
     serializer_class = SalaSerializer
 
@@ -91,7 +110,17 @@ class SalaListCreate(generics.ListCreateAPIView):
 
 
 @extend_schema(tags=["Status"])
-class StatusListCreate(generics.ListCreateAPIView):
+class StatusListCreateView(generics.ListCreateAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny()]
+        return [IsAuthenticated()]
+    
+@extend_schema(tags=["Status"])
+class StatusDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
 
@@ -106,7 +135,7 @@ class StatusListCreate(generics.ListCreateAPIView):
     summary="Lista e cria bens",
     description="GET liberado. POST exige autenticação."
 )
-class BemListCreate(generics.ListCreateAPIView):
+class BemListCreateView(generics.ListCreateAPIView):
     queryset = Bem.objects.all()
     serializer_class = BemSerializer
 
@@ -117,7 +146,11 @@ class BemListCreate(generics.ListCreateAPIView):
 
 
 @extend_schema(tags=["Bens"])
-class BemDetail(generics.RetrieveUpdateDestroyAPIView):
+class BemDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Bem.objects.all()
     serializer_class = BemSerializer
-    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny()]
+        return [IsAuthenticated()]
